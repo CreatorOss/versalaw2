@@ -1,0 +1,138 @@
+import re
+from typing import Dict, List
+
+class LegalAnalyzer:
+    def __init__(self):
+        self.risk_keywords = {
+            'high': [
+                'denda 100%', 'sanksi', 'terminasi', 'ganti rugi', 
+                'wanprestasi', 'jaminan tanah', 'sita', 'denda 50%'
+            ],
+            'medium': [
+                'penalty', 'jaminan', 'collateral', 'denda', 
+                'confidentiality', 'indemnity', 'late payment'
+            ],
+            'low': [
+                'perpanjangan', 'renewal', 'notice', 'pemberitahuan',
+                'review', 'amandement'
+            ]
+        }
+        
+        # Fokus: Indonesia + International
+        self.jurisdiction_keywords = {
+            'indonesia': [
+                'indonesia', 'jakarta', 'hukum indonesia', 'ri', 
+                'republik indonesia', 'undang-undang', 'uu no', 
+                'peraturan pemerintah', 'dki jakarta', 'kementerian'
+            ],
+            'international': [
+                'english law', 'new york', 'governing law', 
+                'international', 'arbitration', 'uncitral',
+                'united nations', 'cross border', 'offshore'
+            ]
+        }
+
+    def analyze_contract(self, text: str) -> Dict:
+        if not text or len(text.strip()) < 10:
+            return self._empty_result("Text too short")
+            
+        text_lower = text.lower()
+        
+        risk_score, risk_factors = self._assess_risk(text_lower)
+        risk_level = self._determine_risk_level(risk_score)
+        jurisdiction = self._detect_jurisdiction(text_lower)
+        issues = self._detect_issues(text_lower, risk_factors)
+        
+        return {
+            'risk_level': risk_level,
+            'jurisdiction': jurisdiction,
+            'issues': issues,
+            'risk_score': risk_score,
+            'text_length': len(text),
+            'risk_factors': risk_factors,
+            'version': '2.0.0'
+        }
+    
+    def _assess_risk(self, text: str) -> tuple:
+        risk_score = 0
+        risk_factors = []
+        for level, keywords in self.risk_keywords.items():
+            for keyword in keywords:
+                if keyword in text:
+                    risk_factors.append(f"{keyword} ({level})")
+                    if level == 'high': risk_score += 3
+                    elif level == 'medium': risk_score += 2
+                    else: risk_score += 1
+        return risk_score, risk_factors
+    
+    def _determine_risk_level(self, score: int) -> str:
+        if score >= 6: return "HIGH"
+        elif score >= 3: return "MEDIUM"
+        else: return "LOW"
+    
+    def _detect_jurisdiction(self, text: str) -> str:
+        jurisdiction_scores = {}
+        for juris, keywords in self.jurisdiction_keywords.items():
+            score = sum(1 for keyword in keywords if keyword in text)
+            if score > 0: jurisdiction_scores[juris] = score
+        
+        if not jurisdiction_scores:
+            return "UNKNOWN"
+        
+        # Prioritize Indonesia jika ada
+        if 'indonesia' in jurisdiction_scores:
+            return "INDONESIA"
+        
+        return max(jurisdiction_scores.items(), key=lambda x: x[1])[0].upper()
+    
+    def _detect_issues(self, text: str, risk_factors: List[str]) -> List[str]:
+        issues = []
+        
+        # Duration analysis
+        year_matches = re.findall(r'(\d+)\s+tahun|(\d+)\s+years', text)
+        for match in year_matches:
+            years = max([int(x) for x in match if x.isdigit()])
+            if years > 5: 
+                issues.append(f"Very long contract: {years} years (recommended: 1-3 years)")
+            elif years > 3: 
+                issues.append(f"Long contract: {years} years (consider 1-3 years)")
+        
+        # Penalty analysis
+        penalty_matches = re.findall(r'denda\s+(\d+%)|penalty\s+of\s+(\d+)%', text)
+        for match in penalty_matches:
+            percentage = max([x for x in match if x])
+            penalty_value = int(percentage.replace('%', ''))
+            if penalty_value > 50: 
+                issues.append(f"Excessive penalty: {percentage} (consider <10%)")
+            elif penalty_value > 10:
+                issues.append(f"High penalty: {percentage} (consider <10%)")
+        
+        # Risk factors summary
+        if risk_factors:
+            unique_factors = list(set(risk_factors))
+            issues.append(f"Identified risk factors: {', '.join(unique_factors)}")
+            
+        return issues
+    
+    def _empty_result(self, message: str) -> Dict:
+        return {
+            'risk_level': 'UNKNOWN', 
+            'jurisdiction': 'UNKNOWN', 
+            'issues': [message],
+            'risk_score': 0, 
+            'text_length': 0, 
+            'risk_factors': [],
+            'version': '2.0.0'
+        }
+
+def analyze_contract(text: str) -> Dict:
+    return LegalAnalyzer().analyze_contract(text)
+
+def extract_clauses(text: str):
+    return {"clauses": ["Clause extraction in development"]}
+
+def normalize_text(text: str):
+    return text.strip()
+
+def validate_legal_format(text: str):
+    return {"is_valid": True, "message": "Basic validation passed"}

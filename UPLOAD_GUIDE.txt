@@ -1,0 +1,30 @@
+GITHUB UPLOAD INSTRUCTIONS
+==========================
+
+1. DOWNLOAD the zip file:
+   /root/dragon/global/versalaw2-for-github.zip
+
+2. CREATE repository:
+   - Go to: https://github.com/new
+   - Name: versalaw2
+   - Description: Legal document analysis library
+   - Add README: NO (we have our own)
+   - Add .gitignore: Python
+   - License: AGPL-3.0-or-later
+
+3. UPLOAD files:
+   - After creating repo, click "Add file" -> "Upload files"
+   - Upload ALL files from the zip
+   - Commit with message: "Initial commit v2.0.0"
+
+FILES TO UPLOAD:
+- versalaw2/__init__.py
+- versalaw2/core.py  
+- README.md
+- LICENSE
+- setup.py
+- .gitignore
+- requirements.txt
+- CHANGELOG.md
+- tests/test_basic.py
+- .github/workflows/ci.yml
