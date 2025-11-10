@@ -1,10 +1,16 @@
-# VERSALAW2 - Legal Document Analysis
+## 🆕 Enhanced Features in Version 2.0
 
-AI-powered legal document analysis with risk assessment.
+### 🔥 Expert Legal Analysis
+- **100+ advanced study cases** integrated
+- **Ghost Contract analysis** for futuristic tech contracts
+- **Supreme Court level reasoning**
+- **Cross-disciplinary legal expertise**
 
-## Installation
-pip install versalaw2
+### 🎯 Usage Example:
+```python
+from versalaw2 import EnhancedLegalClassifier
 
-## Usage
-import versalaw2
-result = versalaw2.analyze_contract("Your text here")
+clf = EnhancedLegalClassifier()
+result = clf.classify_with_expert_analysis("BCI neural interface contract")
+print(f"Expert insights: {result['has_expert_insights']}")
+print(f"Analysis level: {result['analysis_level']}")

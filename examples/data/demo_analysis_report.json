@@ -1,0 +1,65 @@
+{
+  "generated_at": "2025-10-30T20:44:14.299595",
+  "analyzer_version": "2.0.0",
+  "total_contracts": 4,
+  "analysis_results": {
+    "High Risk Employment": {
+      "risk_level": "HIGH",
+      "jurisdiction": "INDONESIA",
+      "issues": [
+        "Risk factors: sanksi (high), denda (medium), jaminan (medium)"
+      ],
+      "risk_score": 7,
+      "text_length": 525,
+      "risk_factors": [
+        "sanksi (high)",
+        "jaminan (medium)",
+        "denda (medium)"
+      ],
+      "version": "2.0.0"
+    },
+    "Medium Risk Software License": {
+      "risk_level": "HIGH",
+      "jurisdiction": "UNKNOWN",
+      "issues": [
+        "Risk factors: renewal (low), confidentiality (medium), late payment (medium), penalty (medium)"
+      ],
+      "risk_score": 7,
+      "text_length": 466,
+      "risk_factors": [
+        "penalty (medium)",
+        "confidentiality (medium)",
+        "late payment (medium)",
+        "renewal (low)"
+      ],
+      "version": "2.0.0"
+    },
+    "Low Risk Service Agreement": {
+      "risk_level": "LOW",
+      "jurisdiction": "INDONESIA",
+      "issues": [
+        "Risk factors: notice (low), review (low)"
+      ],
+      "risk_score": 2,
+      "text_length": 397,
+      "risk_factors": [
+        "notice (low)",
+        "review (low)"
+      ],
+      "version": "2.0.0"
+    },
+    "International Business Contract": {
+      "risk_level": "LOW",
+      "jurisdiction": "INDONESIA",
+      "issues": [
+        "Risk factors: renewal (low)"
+      ],
+      "risk_score": 1,
+      "text_length": 547,
+      "risk_factors": [
+        "renewal (low)"
+      ],
+      "version": "2.0.0"
+    }
+  }
+}

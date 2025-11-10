@@ -1,0 +1,5 @@
+contract_name,risk_level,risk_score,jurisdiction,issues_count,main_issues
+Employment_Contract_001,MEDIUM,5,INDONESIA,2,"Long contract: 5 years; Risk factors: denda (medium), denda 50% (high)"
+Software_License_002,LOW,2,UNKNOWN,1,Risk factors: penalty (medium)
+Partnership_Agreement_003,LOW,0,UNKNOWN,0,
+Service_Contract_004,LOW,1,UNKNOWN,1,Risk factors: notice (low)

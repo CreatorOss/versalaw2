@@ -1,12 +1,11 @@
-from .core import analyze_contract, extract_clauses, normalize_text, validate_legal_format
+# versalaw2/versalaw2/__init__.py
+from .legal_classifier import LegalClassifier, EnhancedLegalClassifier
 
-__version__ = "2.0.0"
-__author__ = "Creator Source"
-__email__ = "creator@source.com"
-
-__all__ = [
-    'analyze_contract',
-    'extract_clauses',
-    'normalize_text', 
-    'validate_legal_format'
-]
+try:
+    from .enhanced_knowledge import EnhancedLegalKnowledge
+    __all__ = ['LegalClassifier', 'EnhancedLegalClassifier', 'EnhancedLegalKnowledge']
+    print("✅ Enhanced features loaded successfully!")
+    
+except ImportError as e:
+    print(f"⚠️  Enhanced features not available: {e}")
+    __all__ = ['LegalClassifier', 'EnhancedLegalClassifier']

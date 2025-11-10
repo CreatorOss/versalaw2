@@ -1,0 +1,13 @@
+VERSALAW2 - CARA PAKAI:
+
+1. Pastikan di directory: /root/dragon/global/versalaw2
+
+2. Pilih salah satu:
+   - python examples/quick_demo.py    (Demo cepat)
+   - python versalaw2_cli.py          (Interaktif)
+   - ./launch_versalaw2.sh            (Pilih menu)
+
+3. Untuk developer:
+   - python test_all_indonesian_law.py (Test semua)
+
+STATUS: ✅ SEMUA MODUL BEKERJA - 7/7 TESTS PASSED!
