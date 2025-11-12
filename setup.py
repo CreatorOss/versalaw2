@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="versalaw2",
-    version="2.0.4",  # Naikkan version untuk update description
+    version="3.0.0",  # Naikkan version untuk update description
     author="Maya Legal Systems",
     author_email="your-email@example.com",
     description="Advanced Indonesian Legal AI with Ghost Contract Analysis & 100+ Expert Study Cases",
