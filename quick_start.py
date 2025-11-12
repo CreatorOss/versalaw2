@@ -1,18 +1,12 @@
-from versalaw2 import EnhancedLegalClassifierWithDB, UnifiedAnalysisEngine, AIEnhancement
+from versalaw2 import MayaLegalQASystem
 
-# Enhanced classifier with database integration
-clf = EnhancedLegalClassifierWithDB()
-analysis = clf.comprehensive_analysis_with_db("Contract with international clauses")
+# Initialize the system
+qa_system = MayaLegalQASystem()
 
-# Unified legal analyzer
-unified = UnifiedAnalysisEngine()
-result = unified.unified_analyze("Your legal document")
+# Ask legal questions
+question = "What are the requirements for a valid contract in Indonesia?"
+answer = qa_system.ask(question)
 
-# AI-powered enhancements
-ai = AIEnhancement()
-enhanced_analysis = ai.enhance_analysis(analysis)
-
-# Advanced search
-from versalaw2 import EnhancedSearchEngine
-search = EnhancedSearchEngine()
-results = search.search_legal_content("neural interface contract")
+print(f"📖 Answer: {answer.answer}")
+print(f"🎯 Confidence: {answer.confidence:.0%}")
+print(f"📚 Sources: {', '.join(answer.sources)}")

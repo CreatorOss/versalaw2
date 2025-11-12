@@ -1,0 +1,37 @@
+================================
+🚀 DEPLOY VERSALAW2 - MANUAL
+================================
+
+📦 PAKET SIAP:
+- versalaw2-1.0.0.tar.gz
+- versalaw2-1.0.0-py3-none-any.whl
+
+🎯 LANGKAH DEPLOY:
+
+1. UPLOAD KE PyPI:
+   twine upload dist/*
+
+2. SETELAH ITU, USER BISA:
+   pip install versalaw2
+
+3. CONTOH PENGGUNAAN:
+   from versalaw2 import MayaLegalQASystem
+   qa = MayaLegalQASystem()
+   answer = qa.ask("Apa hukum kontrak?")
+   print(f"Jawaban: {answer.answer}")
+   print(f"Confidence: {answer.confidence:.0%}")
+
+🏗️ MODULE YANG TERSEDIA:
+- MayaLegalQASystem
+- MayaWisdomProcessor
+- EnhancedLegalAnalyzer  
+- DocumentProcessor
+- ContractAnalyzer
+- UnifiedLegalAnalyzer
+- AILegalPersonhoodAnalyzer
+- InternationalDigitalLawAnalyzer
+
+📍 LOKASI: /root/dragon/global/versalaw2/
+
+🚀 COMMAND: twine upload dist/*
+================================

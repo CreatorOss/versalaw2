@@ -1,78 +1,24 @@
-"""
-VersaLaw2 - Advanced Indonesian Legal AI Assistant
-with Ghost Contract Analysis & 100+ Expert Study Cases
-"""
+# versalaw2 package initialization
+from .maya_wisdom_processor import MayaWisdomProcessor
+from .maya_legal_qa_system import MayaLegalQASystem
+from .enhanced_legal_analyzer import EnhancedLegalAnalyzer
+from .document_processor import DocumentProcessor
+from .contract_analyzer import ContractAnalyzer
+from .unified_analyzer import UnifiedLegalAnalyzer
+from .ai_legal_personhood_analyzer import AILegalPersonhoodAnalyzer
+from .international_digital_law_analyzer import InternationalDigitalLawAnalyzer
 
-__version__ = "3.0.0"
-__author__ = "Your Name"
-__email__ = "your.email@example.com"
-
-# Core VersaLaw2 modules
-from .core import EnhancedLegalClassifier
-from .contract_analyzer import GhostContractAnalyzer
-from .legal_expert import LegalExpertSystem
-from .enhanced_database import LegalDatabaseIntegrator, EnhancedLegalClassifierWithDB
-
-# Integrated Legalmind-AI modules (yang bekerja)
-try:
-    from .unified_analysis_engine import UnifiedAnalysisEngine
-    UNIFIED_AVAILABLE = True
-except ImportError as e:
-    UNIFIED_AVAILABLE = False
-    UnifiedAnalysisEngine = None
-    print(f"⚠️ UnifiedAnalysisEngine not available: {e}")
-
-try:
-    from .enhanced_search import EnhancedSearchEngine
-    SEARCH_AVAILABLE = True  
-except ImportError as e:
-    SEARCH_AVAILABLE = False
-    EnhancedSearchEngine = None
-    print(f"⚠️ EnhancedSearchEngine not available: {e}")
-
-try:
-    from .ai_anhancement import AIEnhancement
-    AI_AVAILABLE = True
-except ImportError as e:
-    AI_AVAILABLE = False
-    AIEnhancement = None
-    print(f"⚠️ AIEnhancement not available: {e}")
-
-try:
-    from .prompt_templates import PromptTemplates
-    PROMPTS_AVAILABLE = True
-except ImportError as e:
-    PROMPTS_AVAILABLE = False
-    PromptTemplates = None
-    print(f"⚠️ PromptTemplates not available: {e}")
-
-try:
-    from .config import LegalMindConfig
-    CONFIG_AVAILABLE = True
-except ImportError as e:
-    CONFIG_AVAILABLE = False
-    LegalMindConfig = None
-    print(f"⚠️ LegalMindConfig not available: {e}")
+__version__ = "1.0.0"
+__author__ = "VersaLaw AI Team"
+__description__ = "Comprehensive Legal AI Analysis System"
 
 __all__ = [
-    # Core VersaLaw2
-    "EnhancedLegalClassifier",
-    "GhostContractAnalyzer",
-    "LegalExpertSystem",
-    "LegalDatabaseIntegrator",
-    "EnhancedLegalClassifierWithDB",
-    
-    # Integrated Legalmind-AI (conditional)
-    "UnifiedAnalysisEngine",
-    "EnhancedSearchEngine", 
-    "AIEnhancement",
-    "PromptTemplates",
-    "LegalMindConfig",
-    
-    # Availability flags
-    "UNIFIED_AVAILABLE",
-    "SEARCH_AVAILABLE",
-    "AI_AVAILABLE", 
-    "PROMPTS_AVAILABLE",
-    "CONFIG_AVAILABLE"
+    "MayaWisdomProcessor",
+    "MayaLegalQASystem",
+    "EnhancedLegalAnalyzer",
+    "DocumentProcessor",
+    "ContractAnalyzer",
+    "UnifiedLegalAnalyzer",
+    "AILegalPersonhoodAnalyzer",
+    "InternationalDigitalLawAnalyzer"
 ]

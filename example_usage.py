@@ -1,58 +1,60 @@
-#!/usr/bin/env python3
 """
-VERSALAW2 Usage Example
+Maya Legal AI - Example Usage
 """
 
 import sys
 import os
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-# Import the analyzers
-from versalaw2.indonesian_law.specialized_law.anti_corruption import AntiCorruptionAnalyzer
-from versalaw2.indonesian_law.specialized_law.terrorism_law import TerrorismLawAnalyzer
-from versalaw2.international_law.international_treaties import InternationalTreatyAnalyzer
+# Add to path
+sys.path.insert(0, 'src')
 
 def main():
-    print("🎯 VERSALAW2 USAGE EXAMPLE")
-    print("=" * 50)
+    print("🔮 Maya Legal AI - Example Usage")
+    print("=" * 40)
     
-    # 1. Analyze corruption case
-    print("\n1. 🏛️ ANALYZING CORRUPTION CASE:")
-    corruption_analyzer = AntiCorruptionAnalyzer()
-    corruption_case = {
-        "melawan_hukum": True,
-        "merugikan_keuangan_negara": True,
-        "kerugian_negara": 5000000000,
-        "penyalahgunaan_wewenang": True
-    }
-    corruption_result = corruption_analyzer.analyze_corruption_case(corruption_case)
-    print(f"   • Violations: {len(corruption_result['corruption_elements'])}")
-    print(f"   • Legal articles: {len(corruption_result['potential_articles'])}")
-    
-    # 2. Analyze terrorism case
-    print("\n2. 🚨 ANALYZING TERRORISM CASE:")
-    terrorism_analyzer = TerrorismLawAnalyzer()
-    terrorism_case = {
-        "perencanaan_terorisme": True,
-        "pendanaan_terorisme": True
-    }
-    terrorism_result = terrorism_analyzer.analyze_terrorism_case(terrorism_case)
-    print(f"   • Terrorism detected: {terrorism_result['terrorism_detected']}")
-    print(f"   • Offenses: {len(terrorism_result['terrorism_offenses'])}")
-    
-    # 3. Analyze international treaty
-    print("\n3. 🌐 ANALYZING INTERNATIONAL TREATY:")
-    treaty_analyzer = InternationalTreatyAnalyzer()
-    treaty_case = {
-        "bilateral": True,
-        "mengatur_materi_uu": True
-    }
-    treaty_result = treaty_analyzer.analyze_treaty_ratification(treaty_case)
-    print(f"   • Treaty type: {treaty_result['treaty_type']}")
-    print(f"   • Parliament approval: {treaty_result['parliament_approval']}")
-    
-    print("\n✅ VERSALAW2 USAGE EXAMPLE COMPLETED SUCCESSFULLY!")
+    try:
+        from versalaw2 import MayaLegalQASystem, MayaWisdomProcessor
+        from versalaw2 import EnhancedLegalAnalyzer, ContractAnalyzer
+        
+        # Initialize systems
+        qa_system = MayaLegalQASystem()
+        wisdom_system = MayaWisdomProcessor()
+        analyzer = EnhancedLegalAnalyzer()
+        contract_analyzer = ContractAnalyzer()
+        
+        print("✅ Systems initialized successfully!")
+        print()
+        
+        # Example questions
+        questions = [
+            "What are the requirements for a valid contract in Indonesia?",
+            "Explain data protection laws for businesses",
+            "What is the legal status of electronic signatures?"
+        ]
+        
+        for i, question in enumerate(questions, 1):
+            print(f"{i}. ❓ {question}")
+            
+            # Get answer from QA system
+            answer = qa_system.ask(question)
+            print(f"   ✅ Answer: {answer.answer[:100]}...")
+            print(f"   🎯 Confidence: {answer.confidence:.0%}")
+            
+            # Get wisdom insights
+            wisdom = wisdom_system.process_legal_query(question)
+            print(f"   🔮 Wisdom: {wisdom['analysis']}")
+            
+            # Analyze as document
+            analysis = analyzer.analyze_document(question)
+            print(f"   🔍 Analysis: {analysis['analysis_summary']}")
+            
+            print()
+        
+        print("🎉 Example completed successfully!")
+        print("Maya Legal AI is ready for your applications!")
+        
+    except Exception as e:
+        print(f"❌ Error: {e}")
 
 if __name__ == "__main__":
     main()

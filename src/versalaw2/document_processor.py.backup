@@ -1,0 +1,25 @@
+"""Simple document processor placeholder."""
+from __future__ import annotations
+from typing import Dict, Any
+from .enhanced_legal_analyzer import analyze_text
+
+
+def preprocess(text: str) -> str:
+    return " ".join(text.split())
+
+
+def postprocess(result: Dict[str, Any]) -> Dict[str, Any]:
+    # For now, just forward result
+    return result
+
+
+def process_document(text: str) -> Dict[str, Any]:
+    clean = preprocess(text)
+    result = analyze_text(clean)
+    return postprocess(result)
+
+
+if __name__ == "__main__":
+    sample = " Ini   adalah   contoh  dokumen rahasia dengan nilai Rp 2.000.000 pada 01-01-2024. "
+    import json
+    print(json.dumps(process_document(sample), ensure_ascii=False, indent=2))

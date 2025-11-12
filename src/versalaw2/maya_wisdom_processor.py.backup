@@ -1,0 +1,172 @@
+#!/usr/bin/env python3
+"""
+Maya Wisdom Processor - Legal AI Intelligence Core
+Fixed Version
+"""
+
+import os
+import json
+import re
+from typing import Dict, List, Any
+
+class MayaWisdomProcessor:
+    def __init__(self):
+        self.legal_knowledge_base = self._load_legal_knowledge()
+    
+    def _load_legal_knowledge(self) -> Dict:
+        """Load basic legal knowledge"""
+        return {
+            "hukum_perdata": {
+                "definisi": "Hukum perdata mengatur hubungan antara individu dengan individu lainnya dalam masyarakat",
+                "bidang": ["Hukum Orang", "Hukum Keluarga", "Hukum Benda", "Hukum Waris", "Hukum Perjanjian"],
+                "sumber": "KUH Perdata (Burgerlijk Wetboek)"
+            },
+            "hukum_pidana": {
+                "definisi": "Hukum pidana mengatur perbuatan yang dilarang dan sanksi bagi pelanggarnya",
+                "asas": ["Legalitas", "Teritorial", "Publik"],
+                "sumber": "KUHP (Kitab Undang-Undang Hukum Pidana)"
+            },
+            "syarat_perjanjian": {
+                "pasal": "Pasal 1320 KUH Perdata",
+                "syarat": ["Kesepakatan", "Kecakapan", "Objek tertentu", "Sebab yang halal"],
+                "penjelasan": "Keempat syarat ini harus terpenuhi agar perjanjian sah secara hukum"
+            },
+            "proses_gugatan": {
+                "tahapan": ["Pengajuan Gugatan", "Mediasi", "Sidang", "Putusan", "Bandung", "Kasasi"],
+                "waktu": "Bervariasi tergantung kompleksitas kasus"
+            }
+        }
+    
+    def process_legal_question(self, question: str) -> Dict[str, Any]:
+        """Process legal question and provide intelligent response"""
+        question_lower = question.lower()
+        
+        # Basic pattern matching for common legal questions
+        if "perdata" in question_lower:
+            return self._handle_perdata_question(question)
+        elif "pidana" in question_lower:
+            return self._handle_pidana_question(question)
+        elif "perjanjian" in question_lower or "syarat sah" in question_lower:
+            return self._handle_contract_question(question)
+        elif "gugatan" in question_lower or "proses" in question_lower:
+            return self._handle_litigation_question(question)
+        else:
+            return self._handle_general_question(question)
+    
+    def _handle_perdata_question(self, question: str) -> Dict:
+        return {
+            "type": "hukum_perdata",
+            "answer": self.legal_knowledge_base["hukum_perdata"]["definisi"],
+            "details": {
+                "bidang_hukum": self.legal_knowledge_base["hukum_perdata"]["bidang"],
+                "sumber": self.legal_knowledge_base["hukum_perdata"]["sumber"]
+            },
+            "confidence": 0.85,
+            "suggestions": [
+                "Butuh informasi lebih detail tentang bidang hukum perdata tertentu?",
+                "Ingin tahu tentang proses gugatan perdata?"
+            ]
+        }
+    
+    def _handle_pidana_question(self, question: str) -> Dict:
+        return {
+            "type": "hukum_pidana", 
+            "answer": self.legal_knowledge_base["hukum_pidana"]["definisi"],
+            "details": {
+                "asas_hukum": self.legal_knowledge_base["hukum_pidana"]["asas"],
+                "sumber": self.legal_knowledge_base["hukum_pidana"]["sumber"]
+            },
+            "confidence": 0.82,
+            "suggestions": [
+                "Butuh informasi tentang jenis-jenis tindak pidana?",
+                "Ingin tahu tentang proses penanganan perkara pidana?"
+            ]
+        }
+    
+    def _handle_contract_question(self, question: str) -> Dict:
+        return {
+            "type": "hukum_perjanjian",
+            "answer": f"Berdasarkan {self.legal_knowledge_base['syarat_perjanjian']['pasal']}, syarat sah perjanjian ada 4:",
+            "details": {
+                "syarat": self.legal_knowledge_base["syarat_perjanjian"]["syarat"],
+                "penjelasan": self.legal_knowledge_base["syarat_perjanjian"]["penjelasan"]
+            },
+            "confidence": 0.90,
+            "suggestions": [
+                "Butuh contoh perjanjian yang sah?",
+                "Ingin tahu tentang akibat hukum perjanjian yang tidak sah?"
+            ]
+        }
+    
+    def _handle_litigation_question(self, question: str) -> Dict:
+        return {
+            "type": "proses_gugatan",
+            "answer": "Proses gugatan perdata melalui beberapa tahapan di pengadilan",
+            "details": {
+                "tahapan": self.legal_knowledge_base["proses_gugatan"]["tahapan"],
+                "perkiraan_waktu": self.legal_knowledge_base["proses_gugatan"]["waktu"]
+            },
+            "confidence": 0.78,
+            "suggestions": [
+                "Butuh informasi tentang biaya perkara?",
+                "Ingin tahu tentang dokumen yang diperlukan untuk mengajukan gugatan?"
+            ]
+        }
+    
+    def _handle_general_question(self, question: str) -> Dict:
+        return {
+            "type": "general",
+            "answer": "Saya adalah asisten hukum AI. Saya dapat membantu dengan pertanyaan tentang: hukum perdata, hukum pidana, perjanjian, dan proses hukum.",
+            "details": {
+                "bidang_yang_ditangani": ["Hukum Perdata", "Hukum Pidana", "Hukum Perjanjian", "Proses Litigasi"],
+                "contoh_pertanyaan": [
+                    "Apa itu hukum perdata?",
+                    "Syarat sah perjanjian apa saja?",
+                    "Bagaimana proses gugatan perdata?"
+                ]
+            },
+            "confidence": 0.70,
+            "suggestions": [
+                "Coba tanyakan tentang hukum perdata atau pidana",
+                "Butuh informasi tentang perjanjian?",
+                "Ingin tahu proses hukum?"
+            ]
+        }
+    
+    def process_criminal_case(self, case_details: Dict) -> Dict:
+        """Process criminal case - basic implementation"""
+        return {
+            "case_type": "criminal",
+            "analysis": "Basic criminal case analysis",
+            "recommendations": ["Consult with legal expert", "Gather evidence"],
+            "confidence": 0.75
+        }
+    
+    def process_civil_case(self, case_details: Dict) -> Dict:
+        """Process civil case - basic implementation"""
+        return {
+            "case_type": "civil", 
+            "analysis": "Basic civil case analysis",
+            "recommendations": ["Review contract terms", "Consider mediation"],
+            "confidence": 0.80
+        }
+
+def test_processor():
+    """Test the wisdom processor"""
+    processor = MayaWisdomProcessor()
+    
+    test_questions = [
+        "Apa itu hukum perdata?",
+        "Syarat sah perjanjian apa saja?",
+        "Bagaimana proses gugatan?"
+    ]
+    
+    for question in test_questions:
+        print(f"Q: {question}")
+        result = processor.process_legal_question(question)
+        print(f"A: {result['answer']}")
+        print(f"Confidence: {result['confidence']}")
+        print("---")
+
+if __name__ == "__main__":
+    test_processor()
