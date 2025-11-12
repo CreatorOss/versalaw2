@@ -1,46 +1,26 @@
-#!/usr/bin/env python3
-"""
-VERSALAW2 Quick Start - Production Ready
-"""
-from versalaw2 import VERSALAW2
-from versalaw2.indonesian_law import IndonesianLawAnalyzer
+from versalaw2 import EnhancedLegalClassifier, GhostContractAnalyzer, LegalExpertSystem
 
-def main():
-    print("🚀 VERSALAW2 QUICK START - PRODUCTION READY")
-    print("=" * 50)
-    
-    # 1. Core Analysis
-    print("\n1. 🔧 CORE CONTRACT ANALYSIS")
-    client = VERSALAW2()
-    
-    contracts = [
-        "Perjanjian kerjasama sederhana",
-        "Kontrak dengan denda 50% untuk keterlambatan", 
-        "Perjanjian investasi dengan denda 100% dan jaminan tanah"
-    ]
-    
-    for contract in contracts:
-        result = client.analyze_contract(contract)
-        print(f"   '{contract[:30]}...' → Risk: {result['risk_level']}")
-    
-    # 2. Indonesian Law Analysis
-    print("\n2. 🇮🇩 INDONESIAN LAW ANALYSIS")
-    indo_analyzer = IndonesianLawAnalyzer()
-    
-    legal_doc = """
-    Peraturan tentang ketertiban umum.
-    Dilarang membatasi hak kebebasan berpendapat.
-    Penyidikan dilakukan dengan berita acara.
-    """
-    
-    result = indo_analyzer.comprehensive_analysis(legal_doc)
-    print(f"   Constitutional: {result['compliance_summary']['constitutional_compliance']}")
-    print(f"   Statutory: {result['compliance_summary']['statutory_compliance']}")
-    print(f"   Overall Risk: {result['compliance_summary']['overall_risk']}")
-    
-    print("\n" + "=" * 50)
-    print("🎉 VERSALAW2 PRODUCTION READY!")
-    print("   All systems operational! 🚀")
+# Initialize all components
+clf = EnhancedLegalClassifier()
+ghost_analyzer = GhostContractAnalyzer()
+expert_system = LegalExpertSystem()
 
-if __name__ == "__main__":
-    main()
+# Example 1: Comprehensive legal analysis
+print("=== COMPREHENSIVE LEGAL ANALYSIS ===")
+result = clf.comprehensive_analysis("BCI neural interface contract validity")
+print(f"Domain: {result['classification']['legal_domain']}")
+print(f"Analysis Level: {result['classification']['analysis_level']}")
+print(f"Confidence: {result['classification']['confidence_score']}")
+
+# Example 2: Ghost contract analysis
+print("\n=== GHOST CONTRACT ANALYSIS ===")
+contract_result = clf.analyze_complex_contract("digital neural link agreement")
+print(f"Contract Type: {contract_result['contract_category']}")
+print(f"Risk Level: {contract_result['risk_level']}")
+print(f"Tech Elements: {contract_result['future_tech_elements']}")
+
+# Example 3: Expert system consultation
+print("\n=== EXPERT SYSTEM CONSULTATION ===")
+expert_advice = expert_system.get_expert_analysis("bci_contract")
+print(f"Case Type: {expert_advice['case_type']}")
+print(f"Precedents: {expert_advice['relevant_precedents']}")
