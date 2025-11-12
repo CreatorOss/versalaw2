@@ -1,16 +1,18 @@
-from versalaw2 import EnhancedLegalClassifierWithDB, LegalDatabaseIntegrator
+from versalaw2 import EnhancedLegalClassifierWithDB, UnifiedAnalysisEngine, AIEnhancement
 
 # Enhanced classifier with database integration
 clf = EnhancedLegalClassifierWithDB()
+analysis = clf.comprehensive_analysis_with_db("Contract with international clauses")
 
-# Direct database access
-integrator = LegalDatabaseIntegrator()
+# Unified legal analyzer
+unified = UnifiedAnalysisEngine()
+result = unified.unified_analyze("Your legal document")
 
-# Comprehensive analysis with database insights
-result = clf.comprehensive_analysis_with_db("Your legal document or contract")
+# AI-powered enhancements
+ai = AIEnhancement()
+enhanced_analysis = ai.enhance_analysis(analysis)
 
-# Access KUHP 2026 articles
-kuhp_articles = clf.get_kuhp_2026_article("legal keyword")
-
-# International standards analysis
-international = clf.analyze_with_international_standards("international contract")
+# Advanced search
+from versalaw2 import EnhancedSearchEngine
+search = EnhancedSearchEngine()
+results = search.search_legal_content("neural interface contract")
