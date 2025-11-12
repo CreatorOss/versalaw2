@@ -16,3 +16,11 @@ __all__ = [
     "GhostContractAnalyzer", 
     "LegalExpertSystem",
 ]
+
+# Enhanced database classes
+from .enhanced_database import LegalDatabaseIntegrator, EnhancedLegalClassifierWithDB
+
+__all__.extend([
+    "LegalDatabaseIntegrator",
+    "EnhancedLegalClassifierWithDB"
+])

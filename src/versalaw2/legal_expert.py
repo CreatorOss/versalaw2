@@ -1,92 +1,125 @@
+"""
+Legal Expert System for VersaLaw2
+Provides expert legal knowledge and insights
+"""
+
+from typing import Dict, List, Any, Optional
+
 class LegalExpertSystem:
-    """
-    Expert system with 100+ Indonesian legal study cases
-    and Supreme Court level reasoning capabilities
-    """
+    """Expert system for legal knowledge and insights"""
     
     def __init__(self):
-        self.study_cases = self._load_study_cases()
-        self.law_batches = self._load_law_batches()
-        
-    def _load_study_cases(self) -> Dict[str, Any]:
-        """Load expert study cases database"""
-        return {
-            "civil_law_cases": 25,
-            "criminal_law_cases": 20, 
-            "administrative_cases": 15,
-            "constitutional_cases": 10,
-            "international_cases": 10,
-            "cyber_law_cases": 12,
-            "emerging_tech_cases": 8,
-            "total_cases": 100
-        }
-    
-    def _load_law_batches(self) -> List[str]:
-        """Load law library batches"""
-        return [
-            "Batch 1: Civil Code & Commercial Law",
-            "Batch 2: Criminal Code & Procedural Law", 
-            "Batch 3: Administrative & Constitutional Law",
-            "Batch 4: International & Cyber Law",
-            "Batch 5: Emerging Technology & AI Law"
+        self.knowledge_base = self._initialize_knowledge_base()
+        self.expert_areas = [
+            "hukum kontrak", "hukum teknologi", "cyber law",
+            "perlindungan data", "hukum internasional", "hukum bisnis"
         ]
+        print("🧠 Legal Expert System initialized!")
     
-    def get_expert_analysis(self, case_type: str) -> Dict[str, Any]:
-        """
-        Get expert analysis based on case type
-        """
+    def _initialize_knowledge_base(self) -> Dict[str, Any]:
+        """Initialize the legal knowledge base"""
         return {
-            "case_type": case_type,
-            "relevant_precedents": self._find_precedents(case_type),
-            "legal_principles": self._extract_legal_principles(case_type),
-            "expert_recommendations": self._generate_expert_recommendations(case_type),
-            "risk_mitigation": self._suggest_risk_mitigation(case_type)
+            "hukum_kontrak": {
+                "prinsip_dasar": ["Kesepakatan", "Itikad baik", "Kausalitas", "Kepatutan"],
+                "syarat_sah": ["Kompeten", "Kesepakatan", "Objek tertentu", "Sebab yang halal"],
+                "klausa_penting": ["Force majeure", "Terminasi", "Ganti rugi", "Yurisdiksi"]
+            },
+            "cyber_law": {
+                "uu_ite": ["Pasal 27", "Pasal 28", "Pasal 29", "Pasal 30", "Pasal 31"],
+                "perlindungan_data": ["Konsent", "Purpose limitation", "Data minimization", "Security"]
+            },
+            "hukum_teknologi": {
+                "kontrak_digital": ["E-signature", "Digital authentication", "Smart contracts"],
+                "ai_regulation": ["Algorithm transparency", "Bias prevention", "Human oversight"]
+            }
         }
     
-    def _find_precedents(self, case_type: str) -> List[str]:
-        """Find relevant legal precedents"""
-        precedents = {
-            "bci_contract": [
-                "Digital Consent Framework 2024",
-                "Neural Interface Regulation Draft",
-                "International BCI Standards 2023"
+    def get_legal_advice(self, question: str) -> Dict[str, Any]:
+        """Get expert legal advice for a question"""
+        
+        area = self._identify_legal_area(question)
+        advice = self._generate_advice(question, area)
+        
+        return {
+            "question": question,
+            "legal_area": area,
+            "expert_advice": advice,
+            "relevant_regulations": self._get_relevant_regulations(area),
+            "risk_assessment": self._assess_legal_risk(question)
+        }
+    
+    def query_knowledge_base(self, topic: str) -> Dict[str, Any]:
+        """Query the legal knowledge base"""
+        topic_lower = topic.lower()
+        
+        for area, knowledge in self.knowledge_base.items():
+            if topic_lower in area or any(topic_lower in key for key in knowledge.keys()):
+                return {
+                    "topic": topic,
+                    "area": area,
+                    "knowledge": knowledge
+                }
+        
+        return {
+            "topic": topic,
+            "area": "general",
+            "knowledge": self.knowledge_base
+        }
+    
+    def _identify_legal_area(self, question: str) -> str:
+        """Identify the legal area of a question"""
+        question_lower = question.lower()
+        
+        if any(word in question_lower for word in ["kontrak", "perjanjian", "klausa"]):
+            return "hukum_kontrak"
+        elif any(word in question_lower for word in ["digital", "teknologi", "ai", "cyber"]):
+            return "hukum_teknologi"
+        elif any(word in question_lower for word in ["data", "privasi", "perlindungan"]):
+            return "cyber_law"
+        else:
+            return "hukum_umum"
+    
+    def _generate_advice(self, question: str, area: str) -> List[str]:
+        """Generate expert advice based on legal area"""
+        advice_map = {
+            "hukum_kontrak": [
+                "Pastikan semua syarat sah kontrak terpenuhi",
+                "Perhatikan klausa force majeure dan terminasi",
+                "Tinjau yurisdiksi dan hukum yang berlaku"
             ],
-            "ai_governance": [
-                "AI Liability Directive 2024", 
-                "Autonomous Systems Legal Framework",
-                "AI-Human Collaboration Guidelines"
+            "hukum_teknologi": [
+                "Perhatikan regulasi khusus teknologi",
+                "Tinjau aspek keamanan siber",
+                "Pastikan compliance dengan UU ITE"
             ],
             "cyber_law": [
-                "Indonesian ITE Law Analysis",
-                "Data Protection Compliance Cases",
-                "Digital Evidence Admissibility"
+                "Implementasi perlindungan data pribadi",
+                "Patuhi ketentuan UU PDP",
+                "Perhatikan aspek跨境 data transfer"
             ]
         }
-        return precedents.get(case_type, ["General Legal Principles"])
+        
+        return advice_map.get(area, [
+            "Konsultasikan dengan ahli hukum terkait",
+            "Tinjau dokumen secara komprehensif",
+            "Pertimbangkan aspek preventif"
+        ])
     
-    def _extract_legal_principles(self, case_type: str) -> List[str]:
-        """Extract relevant legal principles"""
-        return [
-            "Principle of Informed Consent",
-            "Data Sovereignty and Protection", 
-            "Technology Neutrality in Law",
-            "Future-Proof Legal Frameworks"
-        ]
-    
-    def _generate_expert_recommendations(self, case_type: str) -> List[str]:
-        """Generate expert legal recommendations"""
-        return [
-            "Conduct comprehensive legal technology assessment",
-            "Implement multi-jurisdictional compliance checks",
-            "Develop future-proof contract clauses",
-            "Establish ongoing legal monitoring system"
-        ]
-    
-    def _suggest_risk_mitigation(self, case_type: str) -> Dict[str, str]:
-        """Suggest risk mitigation strategies"""
-        return {
-            "regulatory_risk": "Engage with regulatory bodies early",
-            "technology_risk": "Implement phased technology adoption",
-            "legal_risk": "Maintain comprehensive documentation",
-            "reputation_risk": "Develop transparent communication strategy"
+    def _get_relevant_regulations(self, area: str) -> List[str]:
+        """Get relevant regulations for legal area"""
+        regulations = {
+            "hukum_kontrak": ["KUHPerdata Pasal 1234", "KUHPerdata Pasal 1320", "KUHPerdata Pasal 1338"],
+            "hukum_teknologi": ["UU ITE No. 11/2008", "UU PDP No. 27/2022", "Peraturan Teknis Kemenkominfo"],
+            "cyber_law": ["UU ITE Pasal 27-31", "UU PDP", "ISO 27001"]
         }
+        
+        return regulations.get(area, ["Peraturan perundang-undangan terkait"])
+    
+    def _assess_legal_risk(self, question: str) -> str:
+        """Assess legal risk level"""
+        risk_keywords = ["sengketa", "gugatan", "wanprestasi", "pidana", "denda"]
+        
+        if any(keyword in question.lower() for keyword in risk_keywords):
+            return "high"
+        else:
+            return "medium"
