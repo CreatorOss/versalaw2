@@ -1,4 +1,4 @@
-# VersaLaw2 v2.0.4 🚀
+# VersaLaw2 v2.1.0 🚀
 
 Advanced Indonesian Legal AI Assistant with Ghost Contract Analysis & 100+ Expert Study Cases
 
@@ -12,25 +12,20 @@ First AI tool in Indonesia for analyzing futuristic tech contracts:
 - Supreme Court Level Reasoning
 
 ### ⚖️ Expert Legal Intelligence
-- **100+ Advanced Study Cases** with detailed analysis
-- **5 Law Library Batches** covering complex legal domains
-- **Supreme Court Case Analysis** capabilities
-- **Cross-Disciplinary Expertise** (AI Law, International Law, Cyber Law)
+- 100+ Advanced Study Cases with detailed analysis
+- 5 Law Library Batches covering complex legal domains
+- Supreme Court Case Analysis capabilities
+- Cross-Disciplinary Expertise (AI Law, International Law, Cyber Law)
 
-## 🎯 Quick Start
+## 🆕 New in v2.1.0 - Enhanced Database Integration
 
-```python
-from versalaw2 import EnhancedLegalClassifier
+### 📚 Integrated Legal Databases
+- **KUHP 2026 Database** - Complete reference of new Indonesian Criminal Code
+- **UNIDROIT Principles 2016** - International commercial contract standards
+- **Dangerous Clauses Analysis** - International contract risk assessment
+- **Comprehensive Legal References** - Expanded knowledge base
 
-# Initialize with expert knowledge base
-clf = EnhancedLegalClassifier()
+### 🔧 Installation
 
-# Comprehensive legal analysis
-result = clf.comprehensive_analysis("BCI neural interface contract validity")
-print(f"Expert Insights: {result['classification']['has_expert_insights']}")
-print(f"Analysis Level: {result['classification']['analysis_level']}")
-
-# Ghost contract analysis  
-contract_result = clf.analyze_complex_contract("digital neural link agreement")
-print(f"Contract Type: {contract_result['analysis_type']}")
-print(f"Risk Level: {contract_result['risk_level']}")
+```bash
+pip install versalaw2==2.1.0
